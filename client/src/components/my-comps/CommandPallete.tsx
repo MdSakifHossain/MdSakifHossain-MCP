@@ -42,26 +42,51 @@ export function CommandPallete() {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Navigation">
-            <CommandItem onSelect={() => navigate("/")}>
+            <CommandItem
+              onSelect={() => {
+                navigate("/")
+                setOpen((prev) => !prev)
+              }}
+            >
               <IconHome />
               <span>Home</span>
             </CommandItem>
-            <CommandItem onSelect={() => navigate("/llm-tracker")}>
+            <CommandItem
+              onSelect={() => {
+                navigate("/llm-tracker")
+                setOpen((prev) => !prev)
+              }}
+            >
               <IconCookie />
               <span>LLM Tracker</span>
             </CommandItem>
-            <CommandItem onSelect={() => navigate("/llm-tracker/notes")}>
+            <CommandItem
+              onSelect={() => {
+                navigate("/llm-tracker/notes")
+                setOpen((prev) => !prev)
+              }}
+            >
               <IconNote />
               <span>Notes (LLM Tracker)</span>
             </CommandItem>
-            <CommandItem onSelect={() => navigate("/watchlist")}>
+            <CommandItem
+              onSelect={() => {
+                navigate("/watchlist")
+                setOpen((prev) => !prev)
+              }}
+            >
               <IconDeviceTv />
               <span>Watchlist</span>
             </CommandItem>
           </CommandGroup>
           <CommandSeparator />
           <CommandGroup heading="Actions">
-            <CommandItem onSelect={() => console.log("add something")}>
+            <CommandItem
+              onSelect={() => {
+                console.log("add something")
+                setOpen((prev) => !prev)
+              }}
+            >
               <IconPointer />
               <span>Toggle Ghost Cursor</span>
             </CommandItem>
