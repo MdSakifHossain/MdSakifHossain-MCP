@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router"
 import Root from "./layouts/Root"
 import HomePage from "./pages/HomePage"
+import NotFoundPage from "./pages/NotFoundPage"
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,12 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <img src="/oops.svg" alt="404" />,
+    Component: Root,
+    children: [
+      {
+        path: "*",
+        Component: NotFoundPage,
+      },
+    ],
   },
 ])
