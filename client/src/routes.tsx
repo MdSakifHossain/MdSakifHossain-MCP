@@ -26,6 +26,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <p>404 bitch</p>,
+    element: <img src="/oops.svg" alt="404" />,
   },
 ])
