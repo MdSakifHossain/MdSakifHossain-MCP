@@ -9,7 +9,9 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command"
+import { config } from "@/constants"
 import {
+  IconBrandGithub,
   IconCookie,
   IconDeviceTv,
   IconHome,
@@ -89,6 +91,15 @@ export function CommandPallete() {
             >
               <IconPointer />
               <span>Toggle Ghost Cursor</span>
+            </CommandItem>
+            <CommandItem
+              onSelect={() => {
+                window.open(config.socials[3].url, "_blank")
+                setOpen((prev) => !prev)
+              }}
+            >
+              <IconBrandGithub />
+              <span>Open GitHub</span>
             </CommandItem>
           </CommandGroup>
         </CommandList>
