@@ -1,15 +1,15 @@
-// import Header from "@/components/custom/Header"
+// @ts-nocheck
+import { CommandPallete } from "@/components/my-comps/CommandPallete"
 import GhostCursor from "@/components/my-comps/GhostCursor"
 import { Outlet } from "react-router"
-// import Header from "../components/Header";
 
 const Root = () => {
   return (
     <div className="flex min-h-svh flex-col">
-      {/* <Header /> */}
       <GhostCursor />
+      <CommandPallete />
       <main className="flex flex-1 flex-col">
-        <Outlet></Outlet>
+        <Outlet />
       </main>
     </div>
   )
