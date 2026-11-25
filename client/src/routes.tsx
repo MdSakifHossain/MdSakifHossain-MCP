@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router"
 import Root from "./layouts/Root"
+import HomePage from "./pages/HomePage"
 
 export const router = createBrowserRouter([
   {
@@ -8,7 +9,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <p>home</p>,
+        Component: HomePage,
       },
       {
         path: "add",
