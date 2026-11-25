@@ -29,7 +29,7 @@ const ProfileCard = ({ config }) => {
                 key={item.id}
                 href={item.url}
                 target="_blank"
-                className="retro-shadow-sm rounded-md border border-foreground p-1.5 dark:border-muted-foreground"
+                className="retro-shadow-sm rounded-xl border border-foreground p-1.5 dark:border-muted-foreground"
               >
                 {item.icon}
               </a>
