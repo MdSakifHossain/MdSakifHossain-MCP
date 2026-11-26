@@ -355,7 +355,7 @@ function TableActions({ list }) {
                 />
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem
-                    onClick={() => navigate(`/edit/${model._id}`)}
+                    onClick={() => navigate(`/llm-tracker/edit/${model._id}`)}
                   >
                     <IconPencil />
                     Edit
@@ -395,69 +395,6 @@ function SpinnerEmpty() {
       </EmptyHeader>
     </Empty>
   )
-}
-
-// @ts-nocheck
-// --- TIME CONVERSIONS ---
-
-function rawToTime(seconds: number | null | undefined): string {
-  if (seconds === null || seconds === undefined || isNaN(seconds)) return ""
-  const mins = Math.floor(seconds / 60)
-  const secs = seconds % 60
-  return mins > 0 ? `${mins}min ${secs}s` : `${secs}s`
-}
-
-function timeToRaw(str: string | number): number | null {
-  if (typeof str === "number") return str
-  if (!str || typeof str !== "string") return null
-
-  const trimmed = str.trim()
-
-  // Match minutes with 'min', 'm', or 'minutes'
-  const minMatch = trimmed.match(/(\d+(?:\.\d+)?)\s*(?:min|m|minute)s?/i)
-  // Match seconds with 's' or 'sec' or 'seconds'
-  const secMatch = trimmed.match(/(\d+(?:\.\d+)?)\s*(?:sec|s|second)s?/i)
-
-  const minutes = minMatch ? parseFloat(minMatch[1]) : 0
-  const seconds = secMatch ? parseFloat(secMatch[1]) : 0
-
-  if (!minMatch && !secMatch) {
-    // Fallback: check if it's just a raw number string
-    const rawNum = parseFloat(trimmed)
-    return isNaN(rawNum) ? null : rawNum
-  }
-
-  return Math.round(minutes * 60 + seconds)
-}
-
-// --- TOKENS CONVERSIONS ---
-
-function rawToTokens(tokens: number | null | undefined): string {
-  if (tokens === null || tokens === undefined || isNaN(tokens)) return ""
-  return `${tokens.toLocaleString()} tokens`
-}
-
-function tokensToRaw(str: string | number): number | null {
-  if (typeof str === "number") return str
-  if (!str || typeof str !== "string") return null
-  const cleaned = str.replace(/[^\d.]/g, "")
-  const parsed = parseInt(cleaned, 10)
-  return isNaN(parsed) ? null : parsed
-}
-
-// --- SPEED CONVERSIONS ---
-
-function rawToSpeed(speed: number | null | undefined): string {
-  if (speed === null || speed === undefined || isNaN(speed)) return ""
-  return `${speed} t/s`
-}
-
-function speedToRaw(str: string | number): number | null {
-  if (typeof str === "number") return str
-  if (!str || typeof str !== "string") return null
-  const cleaned = str.replace(/[^\d.]/g, "")
-  const parsed = parseFloat(cleaned)
-  return isNaN(parsed) ? null : parsed
 }
 
 // --- Custom on demand ---

@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router"
 import Root from "./layouts/Root"
+import AddNewModel from "./pages/AddNewModel"
+import EditModelInfo from "./pages/EditModelInfo"
 import HomePage from "./pages/HomePage"
 import LLMTracker from "./pages/LLMTracker"
 import LLMTrackerNotes from "./pages/LLMTrackerNotes"
@@ -23,8 +25,12 @@ export const router = createBrowserRouter([
         Component: LLMTrackerNotes,
       },
       {
-        path: "edit/:id",
-        element: <p>edit/:id</p>,
+        path: "llm-tracker/edit/:id",
+        Component: EditModelInfo,
+      },
+      {
+        path: "llm-tracker/add",
+        Component: AddNewModel,
       },
     ],
   },

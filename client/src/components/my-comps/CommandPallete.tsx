@@ -16,6 +16,7 @@ import {
   IconDeviceTv,
   IconHome,
   IconNote,
+  IconPlus,
   IconPointer,
 } from "@tabler/icons-react"
 import React from "react"
@@ -48,9 +49,14 @@ export function CommandPallete() {
           run: () => navigate("/llm-tracker"),
         },
         {
-          label: "Notes (LLM Tracker)",
+          label: "LLM Tracker (Notes)",
           icon: IconNote,
           run: () => navigate("/llm-tracker/notes"),
+        },
+        {
+          label: "LLM Tracker (Add Model)",
+          icon: IconPlus,
+          run: () => navigate("/llm-tracker/add"),
         },
         {
           label: "Watchlist",
