@@ -1,2 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg xmlns="http://www.w3.org/2000/svg" class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: #000000;overflow: hidden;" version="1.1" viewBox="0 0 1024 1024"><path d="M885.333333 512a373.333333 373.333333 0 1 0-746.666666 0 373.333333 373.333333 0 0 0 746.666666 0z m64 0c0 241.493333-195.84 437.333333-437.333333 437.333333S74.666667 753.493333 74.666667 512 270.506667 74.666667 512 74.666667 949.333333 270.506667 949.333333 512zM469.162667 547.498667v-128a32 32 0 0 1 64 0v128a32 32 0 0 1-64 0zM275.498667 547.498667v-128a32 32 0 0 1 64 0v128a32 32 0 0 1-64 0z" /></svg>
+<svg xmlns="http://www.w3.org/2000/svg" class="icon" style="width: 1em;height: 1em;vertical-align: middle;overflow: hidden;" version="1.1" viewBox="0 0 1024 1024">
+  <style>
+    .icon {
+      fill: #000000;
+    }
+    @media (prefers-color-scheme: dark) {
+      .icon {
+        fill: #ffffff;
+      }
+    }
+  </style>
+  <path d="M885.333333 512a373.333333 373.333333 0 1 0-746.666666 0 373.333333 373.333333 0 0 0 746.666666 0z m64 0c0 241.493333-195.84 437.333333-437.333333 437.333333S74.666667 753.493333 74.666667 512 270.506667 74.666667 512 74.666667 949.333333 270.506667 949.333333 512zM469.162667 547.498667v-128a32 32 0 0 1 64 0v128a32 32 0 0 1-64 0zM275.498667 547.498667v-128a32 32 0 0 1 64 0v128a32 32 0 0 1-64 0z" />
+</svg>
