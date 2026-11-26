@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router"
 import Root from "./layouts/Root"
 import HomePage from "./pages/HomePage"
 import LLMTracker from "./pages/LLMTracker"
+import LLMTrackerNotes from "./pages/LLMTrackerNotes"
 import NotFoundPage from "./pages/NotFoundPage"
 
 export const router = createBrowserRouter([
@@ -18,8 +19,8 @@ export const router = createBrowserRouter([
         Component: LLMTracker,
       },
       {
-        path: "notes",
-        element: <p>notes</p>,
+        path: "llm-tracker/notes",
+        Component: LLMTrackerNotes,
       },
       {
         path: "edit/:id",
