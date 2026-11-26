@@ -8,7 +8,6 @@ const mongoUri = process.env.MONGODB_URI;
 if (!mongoUri) {
     const message = `Mongo URI not found. Add "MONGODB_URI" Env Variable`;
     throw new Error(message);
-    return;
 }
 
 const mongoClient = new MongoClient(mongoUri, {
