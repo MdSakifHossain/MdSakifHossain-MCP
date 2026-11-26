@@ -5,15 +5,18 @@ import { ThemeProvider } from "@/components/theme-provider.tsx"
 import { TooltipProvider } from "@/components/ui/tooltip"
 
 import { RouterProvider } from "react-router/dom"
+import { ModelsProvider } from "./contexts/ModelsContext"
 import "./index.css"
 import { router } from "./routes"
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
-      <TooltipProvider>
-        <RouterProvider router={router} />
-      </TooltipProvider>
+      <ModelsProvider>
+        <TooltipProvider>
+          <RouterProvider router={router} />
+        </TooltipProvider>
+      </ModelsProvider>
     </ThemeProvider>
   </StrictMode>
 )
