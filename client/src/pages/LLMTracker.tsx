@@ -47,8 +47,7 @@ import { useNavigate } from "react-router"
 import { useModels } from "../contexts/ModelsContext"
 
 export default function LLMTracker() {
-  const { models } = useModels()
-  const { isLoading } = useModels()
+  const { models, isLoading } = useModels()
   const [searchQuery, setSearchQuery] = useState("")
   const [filteredModels, setFilteredModels] = useState(models)
   const searchInputRef = useRef(null)
@@ -377,14 +376,21 @@ function TableActions({ list }) {
 }
 
 function SpinnerEmpty() {
+  const { error } = useModels()
+
   return (
-    <Empty className="w-full">
+    <Empty className="w-full select-none">
       <EmptyHeader>
-        <Spinner className="size-10" />
-        <EmptyTitle>Processing your request</EmptyTitle>
+        {error ? (
+          <img src="/oops.svg" className="w-6/12" />
+        ) : (
+          <Spinner className="size-10" />
+        )}
+        <EmptyTitle>{error ? "Error" : "Processing your request"}</EmptyTitle>
         <EmptyDescription>
-          Please wait while we process your request. Server is Booting in a few
-          momnets.
+          {error
+            ? error
+            : "Please wait while we process your request. Server is Booting in a few momnets."}
         </EmptyDescription>
       </EmptyHeader>
     </Empty>

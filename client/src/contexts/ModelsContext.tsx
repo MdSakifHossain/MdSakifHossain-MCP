@@ -10,9 +10,13 @@ export function ModelsProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true)
 
   const fetchModels = async () => {
+    if (!import.meta.env.VITE_API_BASE_URL) {
+      const errorMessage = `Add Env Variable: "VITE_API_BASE_URL"`
+      throw new Error(errorMessage)
+      return
+    }
+
     try {
-      const envObj = import.meta.env
-      console.log(envObj)
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_BASE_URL}/api/models`
       )
@@ -30,7 +34,9 @@ export function ModelsProvider({ children }) {
       try {
         await fetchModels()
       } catch (err) {
-        console.error("Something went wrong while fetching the models", err)
+        const errorMessage = `Something went wrong while fetching models list ${err}`
+        console.error(errorMessage)
+        setError(errorMessage)
       }
     }
     doTheThing()
