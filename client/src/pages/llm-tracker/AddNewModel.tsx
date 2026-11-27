@@ -1,18 +1,26 @@
 // @ts-nocheck
-import axios from "axios"
-import { useEffect } from "react"
-import { Controller, useForm, useWatch } from "react-hook-form"
-import { useNavigate } from "react-router"
-
 import PageSwitcher from "@/components/my-comps/PageSwitcher"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+  FieldTitle,
+} from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
+import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import { useModels } from "@/contexts/ModelsContext"
+import axios from "axios"
+import { useEffect } from "react"
+import { Controller, useForm, useWatch } from "react-hook-form"
+import { useNavigate } from "react-router"
 
 export default function AddNewModel() {
   const appBase = "/llm-tracker"
@@ -20,8 +28,7 @@ export default function AddNewModel() {
   return (
     <main className="px-8 pt-6 pb-12">
       <PageSwitcher routes={[appBase, `${appBase}/add`, `${appBase}/notes`]} />
-
-      <section className="container mx-auto flex max-w-3xl flex-col gap-8 py-8">
+      <section className="flex flex-col gap-8 py-8">
         <h2 className="text-4xl">Add Model</h2>
         <LocalLlmForm />
       </section>
@@ -78,139 +85,147 @@ export function LocalLlmForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {/* Model Info */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Model Info</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="model_name">Name</Label>
-            <Input
-              id="model_name"
-              type="text"
-              {...register("model_name", {
-                required: "Model name is required",
-              })}
-              placeholder="Qwen/..."
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="model_url">URL</Label>
-            <Input
-              id="model_url"
-              type="url"
-              {...register("model_url", { required: "Model URL is required" })}
-              placeholder="https://huggingface.co/..."
-            />
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Architecture */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Architecture</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <Controller
-              name="is_moe"
-              control={control}
-              render={({ field }) => (
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="is_moe"
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                  <Label htmlFor="is_moe">Is MoE (Mixture of Experts)?</Label>
-                </div>
-              )}
-            />
-            <Controller
-              name="is_thinking"
-              control={control}
-              render={({ field }) => (
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="is_thinking"
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                  <Label htmlFor="is_thinking">Is Thinking Model?</Label>
-                </div>
-              )}
-            />
-          </div>
-
-          <Separator className="my-4" />
-
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
+      <section className="grid grid-cols-3 gap-8">
+        {/* Model Info */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Model Info</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="total_parameters_b">Total Parameters (B)</Label>
+              <Label htmlFor="model_name">Name</Label>
               <Input
-                id="total_parameters_b"
-                type="number"
-                step="any"
-                placeholder="e.g. 0.6"
-                min={0}
-                {...register("total_parameters_b", { valueAsNumber: true })}
+                id="model_name"
+                type="text"
+                {...register("model_name", {
+                  required: "Model name is required",
+                })}
+                placeholder="Qwen/..."
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="active_parameters_b">Active Parameters (B)</Label>
+              <Label htmlFor="model_url">URL</Label>
               <Input
-                id="active_parameters_b"
-                type="number"
-                step="any"
-                placeholder="e.g. 0.6"
-                min={0}
-                disabled={!isMoE}
-                {...register("active_parameters_b", { valueAsNumber: true })}
+                id="model_url"
+                type="url"
+                {...register("model_url", {
+                  required: "Model URL is required",
+                })}
+                placeholder="https://huggingface.co/..."
               />
             </div>
-          </div>
+          </CardContent>
+        </Card>
 
-          <div className="space-y-2">
-            <Label htmlFor="context_window">Context Window</Label>
-            <Input
-              id="context_window"
-              type="number"
-              placeholder="e.g. 131072"
-              {...register("context_window", { valueAsNumber: true })}
-            />
-          </div>
-        </CardContent>
-      </Card>
+        {/* Architecture */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Architecture</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <Controller
+                name="is_moe"
+                control={control}
+                render={({ field }) => (
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      id="is_moe"
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                    <Label htmlFor="is_moe">Is MoE (Mixture of Experts)?</Label>
+                  </div>
+                )}
+              />
+              <Controller
+                name="is_thinking"
+                control={control}
+                render={({ field }) => (
+                  <div className="flex items-center space-x-2">
+                    <Checkbox
+                      id="is_thinking"
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                    <Label htmlFor="is_thinking">Is Thinking Model?</Label>
+                  </div>
+                )}
+              />
+            </div>
 
-      {/* Status */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Status</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Controller
-            name="is_loaded"
-            control={control}
-            render={({ field }) => (
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="is_loaded"
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
+            <Separator className="my-4" />
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="total_parameters_b">Total Parameters (B)</Label>
+                <Input
+                  id="total_parameters_b"
+                  type="number"
+                  step="any"
+                  placeholder="e.g. 0.6"
+                  min={0}
+                  {...register("total_parameters_b", { valueAsNumber: true })}
                 />
-                <Label htmlFor="is_loaded">Did it Load?</Label>
               </div>
-            )}
-          />
-        </CardContent>
-      </Card>
+              <div className="space-y-2">
+                <Label htmlFor="active_parameters_b">
+                  Active Parameters (B)
+                </Label>
+                <Input
+                  id="active_parameters_b"
+                  type="number"
+                  step="any"
+                  placeholder="e.g. 0.6"
+                  min={0}
+                  disabled={!isMoE}
+                  {...register("active_parameters_b", { valueAsNumber: true })}
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="context_window">Context Window</Label>
+              <Input
+                id="context_window"
+                type="number"
+                placeholder="e.g. 131072"
+                {...register("context_window", { valueAsNumber: true })}
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Status */}
+        <Controller
+          name="is_loaded"
+          control={control}
+          render={({ field }) => (
+            <FieldGroup className="w-full max-w-sm">
+              <FieldLabel htmlFor="is_loaded">
+                <Field orientation="horizontal">
+                  <FieldContent>
+                    <FieldTitle>Did the Model Load?</FieldTitle>
+                    <FieldDescription>
+                      Only Select/Turn it ON when the Model has actually Loaded
+                    </FieldDescription>
+                  </FieldContent>
+                  <Switch
+                    id="is_loaded"
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                  />
+                </Field>
+              </FieldLabel>
+            </FieldGroup>
+          )}
+        />
+      </section>
 
       {/* Performance, Evaluation, Notes (Conditional) */}
       {isLoaded && (
-        <div className="space-y-6">
+        <section className="grid grid-cols-3 gap-8">
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Performance</CardTitle>
@@ -307,26 +322,33 @@ export function LocalLlmForm() {
               </div>
             </CardContent>
           </Card>
-        </div>
+        </section>
       )}
 
-      {/* Secret & Action */}
-      <Card>
-        <CardContent className="space-y-4 pt-6">
-          <div className="space-y-2">
-            <Label htmlFor="secret">Secret</Label>
-            <Input
-              id="secret"
-              type="pass"
-              {...register("secret", { required: "Secret is required" })}
-              placeholder="SUPER_SECRET_PASSPHRASE"
-            />
-          </div>
-          <Button type="submit" className="w-full">
-            Submit to DB
-          </Button>
-        </CardContent>
-      </Card>
+      <section className="grid grid-cols-3 gap-8">
+        <div></div>
+        <div></div>
+        {/* Secret & Action */}
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle className="text-lg">Authentication</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="secret">Secret</Label>
+              <Input
+                id="secret"
+                type="pass"
+                {...register("secret", { required: "Secret is required" })}
+                placeholder="SUPER_SECRET_PASSPHRASE"
+              />
+            </div>
+            <Button type="submit" className="w-full">
+              Submit to DB
+            </Button>
+          </CardContent>
+        </Card>
+      </section>
     </form>
   )
 }
