@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router"
 import Root from "./layouts/Root"
-import AddNewModel from "./pages/AddNewModel"
-import EditModelInfo from "./pages/EditModelInfo"
 import HomePage from "./pages/HomePage"
-import LLMTracker from "./pages/LLMTracker"
-import LLMTrackerNotes from "./pages/LLMTrackerNotes"
 import NotFoundPage from "./pages/NotFoundPage"
+
+import AddNewModel from "./pages/llm-tracker/AddNewModel"
+import EditModelInfo from "./pages/llm-tracker/EditModelInfo"
+import LLMTracker from "./pages/llm-tracker/LLMTracker"
+import LLMTrackerNotes from "./pages/llm-tracker/LLMTrackerNotes"
 
 export const router = createBrowserRouter([
   {

@@ -155,7 +155,7 @@ export default function EditModelInfo() {
   if (notFound) return null
 
   return (
-    <main className="container mx-auto max-w-2xl py-8">
+    <main className="container mx-auto max-w-2xl px-8 pt-6 pb-12">
       <h1 className="mb-6 text-3xl font-bold">Edit Model</h1>
 
       <form

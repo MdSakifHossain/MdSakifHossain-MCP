@@ -2,10 +2,9 @@
 import axios from "axios"
 import { useEffect } from "react"
 import { Controller, useForm, useWatch } from "react-hook-form"
-import { useNavigate } from "react-router" // Adjust router import if using another router
-import { useModels } from "../contexts/ModelsContext" // Adjust path to your context file
+import { useNavigate } from "react-router"
 
-// shadcn/ui components
+import PageSwitcher from "@/components/my-comps/PageSwitcher"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -13,19 +12,25 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
+import { useModels } from "@/contexts/ModelsContext"
 
 export default function AddNewModel() {
+  const appBase = "/llm-tracker"
+
   return (
-    <main className="container mx-auto max-w-2xl pb-8">
-      <h1 className="mb-6 text-3xl font-bold">Add Model</h1>
-      <LocalLlmForm />
+    <main className="px-8 pt-6 pb-12">
+      <PageSwitcher routes={[appBase, `${appBase}/add`, `${appBase}/notes`]} />
+      <section className="container mx-auto max-w-2xl py-8">
+        {/* <h1 className="mb-6 text-3xl font-bold">Add Model</h1> */}
+        <LocalLlmForm />
+      </section>
     </main>
   )
 }
 
 export function LocalLlmForm() {
   const navigate = useNavigate()
-  const { models, updateModels } = useModels()
+  const { fetchModels } = useModels()
 
   const { register, control, handleSubmit, setValue, reset } = useForm()
 
@@ -53,24 +58,18 @@ export function LocalLlmForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/models`,
-        data
-      )
-
-      const createdModel = {
-        ...response.data.data,
-        _id: response.data.insertedId,
-      }
-      updateModels([createdModel, ...models])
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/models`, data)
+      fetchModels()
       reset()
-      navigate("/")
+      navigate("/llm-tracker")
     } catch (err) {
       const serverMessage = err.response?.data?.message
       const validationErrors = err.response?.data?.errors?.join("\n• ")
       const alertText = validationErrors
         ? `${serverMessage}:\n• ${validationErrors}`
-        : serverMessage || err.message || "An unexpected error occurred."
+        : serverMessage ||
+          err.message ||
+          "An unexpected error occurred while adding new model"
 
       alert(`Failed to add model:\n${alertText}`)
       console.error("Error posting model:", err)

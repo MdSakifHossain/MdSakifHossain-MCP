@@ -1,4 +1,5 @@
 // @ts-nocheck
+import PageSwitcher from "@/components/my-comps/PageSwitcher"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -33,6 +34,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { useModels } from "@/contexts/ModelsContext"
 import {
   IconArrowDown,
   IconArrowsUpDown,
@@ -44,7 +46,6 @@ import {
 } from "@tabler/icons-react"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { useNavigate } from "react-router"
-import { useModels } from "../contexts/ModelsContext"
 
 export default function LLMTracker() {
   const { models, isLoading } = useModels()
@@ -87,28 +88,35 @@ export default function LLMTracker() {
     return () => clearTimeout(timer)
   }, [searchQuery, models])
 
+  const appBase = "/llm-tracker"
+
   return (
-    <div className="flex flex-1 flex-col gap-8 px-8 py-12">
+    <div className="flex flex-1 flex-col gap-8 px-8 pt-6 pb-12">
       {isLoading ? (
         <SpinnerEmpty></SpinnerEmpty>
       ) : (
         <>
-          <InputGroup className="mx-auto max-w-5xl">
-            <InputGroupInput
-              ref={searchInputRef}
-              type="search"
-              name="search"
-              placeholder={`Search ${models?.length} Models by Name`}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+          <div className="flex items-start justify-between">
+            <PageSwitcher
+              routes={[appBase, `${appBase}/add`, `${appBase}/notes`]}
             />
-            <InputGroupAddon>
-              <IconSearch className="text-muted-foreground" />
-            </InputGroupAddon>
-            <InputGroupAddon align="inline-end">
-              <Kbd>/</Kbd>
-            </InputGroupAddon>
-          </InputGroup>
+            <InputGroup className="max-w-2xl">
+              <InputGroupInput
+                ref={searchInputRef}
+                type="search"
+                name="search"
+                placeholder={`Search ${models?.length} Models by Name`}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <InputGroupAddon>
+                <IconSearch className="text-muted-foreground" />
+              </InputGroupAddon>
+              <InputGroupAddon align="inline-end">
+                <Kbd>/</Kbd>
+              </InputGroupAddon>
+            </InputGroup>
+          </div>
           <TableActions list={filteredModels}></TableActions>
         </>
       )}
