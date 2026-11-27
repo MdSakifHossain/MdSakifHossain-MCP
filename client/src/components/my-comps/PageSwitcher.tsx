@@ -37,11 +37,11 @@ export default function PageSwitcher({ routes = [], ...props }) {
   }, [nextRoute, prevRoute, navigate])
 
   return (
-    <Link {...props} to={nextRoute} className="inline select-none">
+    <Link {...props} to={nextRoute} className="inline rounded-full select-none">
       <img
         src="/vite.svg"
         alt="logo"
-        className="floating inline size-16 select-none"
+        className="floating fixed top-5 left-4 inline size-16 select-none"
       />
     </Link>
   )
