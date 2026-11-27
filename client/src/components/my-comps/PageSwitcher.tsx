@@ -18,6 +18,9 @@ export default function PageSwitcher({ routes = [], ...props }) {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
+      // Ignore if modifier keys are pressed (ctrl, cmd/windows, shift, alt)
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return
+
       const key = e.key.toLowerCase()
       if (key === "j") {
         e.preventDefault()
