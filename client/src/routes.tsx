@@ -3,6 +3,7 @@ import Root from "./layouts/Root"
 import HomePage from "./pages/HomePage"
 import NotFoundPage from "./pages/NotFoundPage"
 
+import LLMTrackerLayout from "./layouts/LLMTrackerLayout"
 import AddNewModel from "./pages/llm-tracker/AddNewModel"
 import EditModelInfo from "./pages/llm-tracker/EditModelInfo"
 import LLMTracker from "./pages/llm-tracker/LLMTracker"
@@ -17,20 +18,26 @@ export const router = createBrowserRouter([
         index: true,
         Component: HomePage,
       },
+    ],
+  },
+  {
+    path: "llm-tracker",
+    Component: LLMTrackerLayout,
+    children: [
       {
-        path: "llm-tracker",
+        index: true,
         Component: LLMTracker,
       },
       {
-        path: "llm-tracker/notes",
+        path: "notes",
         Component: LLMTrackerNotes,
       },
       {
-        path: "llm-tracker/edit/:id",
+        path: "edit/:id",
         Component: EditModelInfo,
       },
       {
-        path: "llm-tracker/add",
+        path: "add",
         Component: AddNewModel,
       },
     ],
