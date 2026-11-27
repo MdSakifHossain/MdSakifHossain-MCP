@@ -1,5 +1,4 @@
 // @ts-nocheck
-import PageSwitcher from "@/components/my-comps/PageSwitcher"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -88,8 +87,6 @@ export default function LLMTracker() {
     return () => clearTimeout(timer)
   }, [searchQuery, models])
 
-  const appBase = "/llm-tracker"
-
   return (
     <main className="flex flex-1 flex-col gap-8 px-8 pt-6 pb-12">
       {isLoading ? (
@@ -97,9 +94,6 @@ export default function LLMTracker() {
       ) : (
         <>
           <div className="flex items-start justify-between">
-            <PageSwitcher
-              routes={[appBase, `${appBase}/add`, `${appBase}/notes`]}
-            />
             <InputGroup className="max-w-2xl">
               <InputGroupInput
                 ref={searchInputRef}

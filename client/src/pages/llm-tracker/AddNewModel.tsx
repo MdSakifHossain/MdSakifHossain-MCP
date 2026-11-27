@@ -1,5 +1,4 @@
 // @ts-nocheck
-import PageSwitcher from "@/components/my-comps/PageSwitcher"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -23,11 +22,8 @@ import { Controller, useForm, useWatch } from "react-hook-form"
 import { useNavigate } from "react-router"
 
 export default function AddNewModel() {
-  const appBase = "/llm-tracker"
-
   return (
     <main className="px-8 pt-6 pb-12">
-      <PageSwitcher routes={[appBase, `${appBase}/add`, `${appBase}/notes`]} />
       <section className="flex flex-col gap-8 py-8">
         <h2 className="text-4xl">Add Model</h2>
         <LocalLlmForm />

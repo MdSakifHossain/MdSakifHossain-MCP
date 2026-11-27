@@ -37,8 +37,8 @@ export default function PageSwitcher({ routes = [], ...props }) {
   }, [nextRoute, prevRoute, navigate])
 
   return (
-    <Link {...props} className="select-none" to={nextRoute}>
-      <img src="/vite.svg" alt="logo" className="size-16" />
+    <Link {...props} to={nextRoute} className="inline select-none">
+      <img src="/vite.svg" alt="logo" className="inline size-16 select-none" />
     </Link>
   )
 }

@@ -33,7 +33,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-import PageSwitcher from "@/components/my-comps/PageSwitcher"
 import {
   AGENT_EVAL_METRICS,
   AGENT_PROMPT,
@@ -89,12 +88,8 @@ function CodeBlock({ label, filename = "prompt.txt", description, content }) {
 }
 
 export default function LLMTrackerNotes() {
-  const appBase = "/llm-tracker"
-
   return (
     <main className="px-8 pt-6 pb-12">
-      <PageSwitcher routes={[appBase, `${appBase}/add`, `${appBase}/notes`]} />
-
       <div className="container mx-auto w-full space-y-8 py-8">
         <section className="flex flex-col gap-8">
           <h2 className="text-4xl">Run</h2>

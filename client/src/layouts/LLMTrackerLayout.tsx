@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { CommandPallete } from "@/components/my-comps/CommandPallete"
 import GhostCursor from "@/components/my-comps/GhostCursor"
+import LLMTrackerHeader from "@/components/my-comps/LLMTrackerHeader"
 import { Outlet } from "react-router"
 
 export default function LLMTrackerLayout() {
@@ -8,7 +9,7 @@ export default function LLMTrackerLayout() {
     <div className="flex min-h-svh flex-col">
       <GhostCursor />
       <CommandPallete />
-      {/* <LLMTrackerHeader /> */}
+      <LLMTrackerHeader />
       <main className="flex flex-1 flex-col">
         <Outlet />
       </main>
