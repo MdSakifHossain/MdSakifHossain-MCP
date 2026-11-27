@@ -88,7 +88,7 @@ export default function LLMTracker() {
   }, [searchQuery, models])
 
   return (
-    <main className="flex flex-1 flex-col gap-8 px-8 pb-12">
+    <main className="flex flex-1 flex-col gap-8 px-8 pt-8 pb-12">
       {isLoading ? (
         <SpinnerEmpty></SpinnerEmpty>
       ) : (
