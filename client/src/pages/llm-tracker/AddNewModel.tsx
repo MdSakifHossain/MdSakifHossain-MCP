@@ -20,8 +20,9 @@ export default function AddNewModel() {
   return (
     <main className="px-8 pt-6 pb-12">
       <PageSwitcher routes={[appBase, `${appBase}/add`, `${appBase}/notes`]} />
-      <section className="container mx-auto max-w-2xl py-8">
-        {/* <h1 className="mb-6 text-3xl font-bold">Add Model</h1> */}
+
+      <section className="container mx-auto flex max-w-3xl flex-col gap-8 py-8">
+        <h2 className="text-4xl">Add Model</h2>
         <LocalLlmForm />
       </section>
     </main>

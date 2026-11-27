@@ -91,7 +91,7 @@ export default function LLMTracker() {
   const appBase = "/llm-tracker"
 
   return (
-    <div className="flex flex-1 flex-col gap-8 px-8 pt-6 pb-12">
+    <main className="flex flex-1 flex-col gap-8 px-8 pt-6 pb-12">
       {isLoading ? (
         <SpinnerEmpty></SpinnerEmpty>
       ) : (
@@ -120,7 +120,7 @@ export default function LLMTracker() {
           <TableActions list={filteredModels}></TableActions>
         </>
       )}
-    </div>
+    </main>
   )
 }
 

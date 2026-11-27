@@ -95,7 +95,7 @@ export default function LLMTrackerNotes() {
     <main className="px-8 pt-6 pb-12">
       <PageSwitcher routes={[appBase, `${appBase}/add`, `${appBase}/notes`]} />
 
-      <div className="container mx-auto max-w-7xl space-y-8">
+      <div className="container mx-auto w-full space-y-8 py-8">
         <section className="flex flex-col gap-8">
           <h2 className="text-4xl">Run</h2>
           <Card>

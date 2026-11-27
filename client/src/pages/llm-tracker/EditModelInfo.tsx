@@ -155,8 +155,9 @@ export default function EditModelInfo() {
   if (notFound) return null
 
   return (
-    <main className="container mx-auto max-w-2xl px-8 pt-6 pb-12">
-      <h1 className="mb-6 text-3xl font-bold">Edit Model</h1>
+    <main className="container mx-auto flex max-w-3xl flex-col gap-6 px-8 pt-6 pb-12">
+      {/* <h1 className="mb-6 text-3xl font-bold">Edit Model</h1> */}
+      <h2 className="text-4xl">Edit Model</h2>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
