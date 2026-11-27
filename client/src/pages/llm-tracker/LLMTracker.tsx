@@ -93,7 +93,7 @@ export default function LLMTracker() {
         <SpinnerEmpty></SpinnerEmpty>
       ) : (
         <>
-          <div className="flex items-start justify-between">
+          <div className="flex items-start justify-end">
             <InputGroup className="max-w-2xl">
               <InputGroupInput
                 ref={searchInputRef}
