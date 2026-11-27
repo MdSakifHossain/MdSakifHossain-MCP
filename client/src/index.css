@@ -146,3 +146,21 @@
 .retro-shadow-sm {
   box-shadow: 2px 2px 0 var(--primary);
 }
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
